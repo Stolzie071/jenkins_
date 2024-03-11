@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Running Python Script...'
                 sh 'python3 pascals.py'
             }
         }
@@ -13,7 +12,7 @@ pipeline {
             steps {
                 script {
                     // Архивация созданного архива с исходным кодом
-                    archiveArtifacts artifacts: 'myapp.tar.gz', fingerprint: true
+                    archiveArtifacts artifacts: 'pascals', fingerprint: true
                 }
             }
         }
