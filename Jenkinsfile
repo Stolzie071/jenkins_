@@ -10,10 +10,7 @@ pipeline {
 
         stage('Archive') {
             steps {
-                script {
-                    // Архивация созданного архива с исходным кодом
                     archiveArtifacts artifacts: 'pascals', fingerprint: true
-                }
             }
         }
     }
