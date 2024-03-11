@@ -4,13 +4,20 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'python3 pascals.py'
+                script {
+                    // Создание докер-контейнера
+                    docker.image('gcc').inside {
+                        // Компиляция проекта
+                        sh 'g++ -o pascals pascals.cpp'
+                    }
+                }
             }
         }
 
         stage('Archive') {
             steps {
-                    archiveArtifacts artifacts: 'pascals', fingerprint: true
+                // Архивация бинарника как артефакта
+                archiveArtifacts artifacts: 'pascals', fingerprint: true
             }
         }
     }
